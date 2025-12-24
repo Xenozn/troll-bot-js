@@ -21,7 +21,7 @@ module.exports = {
     description: 'Squid Game - Usage: !squidgame ou !squidgame <ID_salon>',
     async execute(message, args) {
 
-        // Vérifier si l'utilisateur a le rôle requis
+
         const requiredRoleId = config.squidgame.requiredRoleId;
 
         if (!message.member.roles.cache.has(requiredRoleId)) {
@@ -61,7 +61,6 @@ module.exports = {
             return message.reply("⚠️ Je suis déjà dans un salon vocal.");
         }
 
-        // Définir le cooldown APRÈS toutes les vérifications
         cooldowns.set(guildId, Date.now());
 
         let connection, player;
@@ -78,13 +77,8 @@ module.exports = {
 
             const { delayMin, delayMax } = config.squidgame;
             const delay = Math.floor(Math.random() * (delayMax - delayMin + 1)) + delayMin;
-
-            message.channel.send(`⏳ Le jeu commence dans ${Math.round(delay/1000)} secondes...`);
             await new Promise(r => setTimeout(r, delay));
 
-            message.channel.send('🔴🟢 **Red Light, Green Light!**');
-
-            // Jouer un fichier local
             const audioPath = path.join(__dirname, '../sounds/squidgame.mp3');
             player = createAudioPlayer();
             const resource = createAudioResource(audioPath);
@@ -110,7 +104,6 @@ module.exports = {
         } catch (err) {
             console.error('Erreur Squid Game:', err);
             message.reply('❌ Erreur: ' + err.message);
-            // En cas d'erreur, retirer le cooldown pour permettre de réessayer
             cooldowns.delete(guildId);
         } finally {
             if (player) player.stop();

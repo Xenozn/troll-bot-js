@@ -1,0 +1,10 @@
+{
+  "token": "",
+  "prefix": "!",
+  "squidgame": {
+    "delayMin": 1000,
+    "delayMax": 300000,
+    "cooldown": 600,
+    "requiredRoleId": "" //id of the role required to use squidgame commands
+  }
+}
