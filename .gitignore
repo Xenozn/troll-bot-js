@@ -1,0 +1,28 @@
+# Node
+node_modules/
+
+# Fichiers de config sensibles
+config.json
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+
+# IntelliJ / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# IntelliJ out
+out/
+
+# IntelliJ caches
+.idea_modules/
